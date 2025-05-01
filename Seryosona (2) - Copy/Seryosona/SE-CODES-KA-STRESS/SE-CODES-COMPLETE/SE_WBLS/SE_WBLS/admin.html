@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q City Bus Service / Libreng Sakay</title>
+    <link rel="stylesheet" href="adminstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="header">
+        <img src="Pictures/QCLogo.png.png" alt="Logo" class="logo">
+        <div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <img src="Pictures/linebr.png" alt="Q City Bus Service Banner" class="banner-image">
+        <h1>Q City Bus Service / <i>Libreng Sakay</i></h1>
+    </div>
+
+    <div>
+
+        
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="action-box">
+                <h3>Manage Bus</h3>
+                <input type="text" placeholder="Enter Bus ID" />
+                <input type="text" placeholder="Enter Plate number" />
+                <input type="text" placeholder="Enter Name" />
+                <input type="email" placeholder="Enter email" />
+                <input type="password" placeholder="Password" />
+                <button>Add</button>
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="top-btns">
+                <div class="top-btn"></div>
+                <div class="top-btn"></div>
+                <div class="top-btn"></div>
+                <div class="map-icon"></div>
+            </div>
+
+            <div class="left-panel">
+                <h3>
+                    <div class="logo-container">
+                        <img src="Pictures/mainlogo.png" alt="Bus Logo" />
+                    </div>
+                    Add Bus Info
+                </h3>
+
+                <div class="info-panel">
+                    <table class="data-grid" id="busTable">
+                        <thead>
+                            <tr>
+                                <th>Bus ID</th>
+                                <th>Plate Number</th>
+                                <th>Conductor Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="active">
+                                <td>101</td>
+                                <td>ABC-1234</td>
+                                <td>QCity Bus A</td>
+                                <td>user1@example.com</td>
+                                <td>**********</td>
+                            </tr>
+                            <tr class="inactive">
+                                <td>102</td>
+                                <td>CDB-1114</td>
+                                <td>QCity Bus B</td>
+                                <td>user2@example.com</td>
+                                <td>**********</td>
+                            </tr>
+                            <tr class="inactive">
+                                <td>102</td>
+                                <td>XYZ-5678</td>
+                                <td>QCity Bus B</td>
+                                <td>user3@example.com</td>
+                                <td>**********</td>
+                            </tr>
+                            <tr class="inactive">
+                                <td>105</td>
+                                <td>aaa-5678</td>
+                                <td>QCity Bus B</td>
+                                <td>user4@example.com</td>
+                                <td>**********</td>
+                            </tr>
+                            <tr class="active">
+                                <td>101</td>
+                                <td>ABC-1234</td>
+                                <td>QCity Bus A</td>
+                                <td>user5@example.com</td>
+                                <td>**********</td>
+                            </tr>
+                            <tr class="inactive">
+                                <td>102</td>
+                                <td>CDB-1114</td>
+                                <td>QCity Bus B</td>
+                                <td>user6@example.com</td>
+                                <td>**********</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </div>
+    </footer>
+
+    <div id="tosModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">×</span>
+
+            <h2>📄 Terms of Service</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+            <p>Welcome to the Q City Bus Service / Libreng Sakay Admin System! These Terms of Service govern your use of our platform for managing bus information.</p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By using this website, you agree to be bound by these Terms. If you do not agree, please refrain from using the service.</p>
+
+            <h3>2. Description of Service</h3>
+            <p>The system allows administrators to manage bus details such as Bus ID, Name, Plate Number, and Status.</p>
+
+            <h3>3. Use of the Service</h3>
+            <p>You agree to use the platform only for authorized administrative purposes. You must not misuse the system or attempt unauthorized access.</p>
+
+            <h3>4. Intellectual Property</h3>
+            <p>All content, including design and logos, is the property of the Q City Bus Service and may not be copied or reproduced without permission.</p>
+
+            <h3>5. Disclaimer</h3>
+            <p>The information provided within this admin panel is for internal management purposes.</p>
+
+            <h3>6. Termination</h3>
+            <p>We reserve the right to suspend or terminate access to administrator accounts that violate these terms or misuse the system.</p>
+
+            <h3>7. Changes to the Terms</h3>
+            <p>We may update these Terms from time to time. Administrators will be notified of any changes.</p>
+
+            <hr>
+
+            <h2>🔒 Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>This admin system may record actions performed by administrators for audit and security purposes. This may include timestamps of logins, data modifications, and other administrative activities.</p>
+
+            <p><strong>We do not collect:</strong> Personal information of end-users or track their usage of the public-facing bus service.</p>
+
+            <h3>2. Use of Information</h3>
+            <p>The data collected within this admin panel is used solely for system administration, security, and auditing purposes.</p>
+
+            <h3>3. Data Security</h3>
+            <p>We implement standard security measures to protect administrative data from unauthorized access or disclosure. However, no system can be guaranteed 100% secure.</p>
+
+            <h3>4. Sharing of Data</h3>
+            <p>Administrative data will not be shared with external third parties unless required by law.</p>
+
+            <h3>5. Cookies</h3>
+            <p>Cookies may be used to manage admin sessions. You can adjust your browser settings to manage cookies.</p>
+
+            <h3>6. Your Rights</h3>
+            <p>As this is an admin system, data access and modification are controlled by authorized personnel.</p>
+
+            <h3>7. Updates to This Policy</h3>
+            <p>This Privacy Policy may be updated from time to time. Please review it periodically to stay informed of any changes.</p>
+        </div>
+    </div>
+
+    <script>
+        const openModalLink = document.querySelector('.footer-links a');
+        const modal = document.getElementById('tosModal');
+        const closeModal = document.getElementById('closeModal');
+
+        openModalLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    </script>
+    <script>
+        // Toggle sidebar visibility on mobile
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+</html>

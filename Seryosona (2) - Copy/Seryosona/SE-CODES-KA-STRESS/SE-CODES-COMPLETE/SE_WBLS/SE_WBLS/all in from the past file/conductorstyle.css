@@ -1,0 +1,264 @@
+/* ========================= */
+/*       General Styles      */
+/* ========================= */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: url("Pictures/2.png") no-repeat center center fixed;
+    background-size: cover;
+}
+html, body {
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%; /* Ensure full width */
+}
+
+/* ========================= */
+/*          Header           */
+/* ========================= */
+header {
+    background: #001F54;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.header-logo {
+    width: 60px;
+    height: auto;
+    
+    margin-left: 10px;
+}
+
+/* ========================= */
+/*      Main Container       */
+/* ========================= */
+.container {
+    flex: 1;
+    width: 90%;
+    margin: 20px auto;
+    background-color: #09232be1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================= */
+/*        Image Section      */
+/* ========================= */
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orig-logo {
+    width: 150px;
+    height: auto;
+}
+
+/* ========================= */
+/*      Content Layout       */
+/* ========================= */
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+/* ========================= */
+/*        Map Section  yung logo nared      */
+/* ========================= */
+.map-section {
+    width: 60%;
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.map-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.map-logo {
+    width: 50px;
+    height: small;
+}
+/* ========================= */
+/*        Form Section       */
+/* ========================= */
+.form-section {
+    width: 100%; /* Take full width */
+    max-width: 600px; /* Limit maximum width */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: auto;
+}
+
+/* Styling for form fields */
+.input-box,
+.textarea-box,
+.notes-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #145380;
+    padding: 0px; /* Remove padding to fit textareas */
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevent overflow */
+}
+
+label {
+    font-size: 14px;
+    color: white;
+    padding: 10px; /* Add padding for spacing */
+}
+
+/* Input and Textarea Styling */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 0; /* Remove border-radius for a cleaner fit */
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Make textarea full height of its box */
+textarea {
+    height: 120px; /* Adjust height */
+    resize: vertical;
+}
+
+/* Save Button */
+.save-btn {
+    background-color: #4da8da;
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.save-btn:hover {
+    background-color: #1c6dc9;
+}
+
+/* ========================= */
+/*          Footer           */
+/* ========================= */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background: #001F54;
+    color: white;
+    margin-top: auto;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 5px 0;
+    display: block;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* ========================= */
+/*      Social Icons         */
+/* ========================= */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Style for Font Awesome icons */
+.fa {
+    font-size: 25px !important;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: blue;
+}
+/* Style all Font Awesome icons */
+.fa {
+    font-size: 25px !important; 
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    text-align: center;
+}
+
+
+/* Add hover effect */
+.fa:hover {
+    opacity: 0.7;
+    color: blue;
+}
+
+/* Facebook */
+.fa-facebook {
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    color: white;
+}
+
+/* Instagram */
+.fa-instagram {
+    color: white;
+}

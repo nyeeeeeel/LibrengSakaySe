@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-y: hidden; /* Remove horizontal scroll bar */
+        }
+
+        #map {
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            margin: 0 auto; /* Center the map */
+        }
+
+        .map-section-embedded {
+            width: 100%;
+            height: 500px;
+            border: 0;
+            overflow: hidden;
+        }
+
+        .label-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #333333;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-block;
+            max-width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script>
+        const map = L.map('map').setView([14.6514, 121.0492], 13); // Centered in Quezon City
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a>',
+        }).addTo(map);
+
+        // Adjusted bus stops based on your provided route
+        const stops = [
+            { name: "Quezon City Hall NHA Interchange", position: [14.6331, 121.0389], color: "blue" },
+            { name: "North Avenue, Veterans Hospital/Vertis North", position: [14.6549, 121.0381], color: "green" },
+            { name: "Mindanao Avenue corner Road 1", position: [14.6762, 121.0410], color: "red" },
+            { name: "Mindanao Avenue, Tullahan Bridge", position: [14.6852, 121.0468], color: "purple" },
+            { name: "Mindanao Avenue corner Congressional Avenue", position: [14.6974, 121.0537], color: "orange" },
+            { name: "Mindanao Avenue corner Tandang Sora Avenue", position: [14.7071, 121.0581], color: "yellow" },
+            { name: "Mindanao Avenue corner D. Muñoz Street", position: [14.7184, 121.0623], color: "cyan" },
+            { name: "Mindanao Avenue corner Old Sauyo Road", position: [14.7288, 121.0665], color: "pink" },
+            { name: "Mindanao Avenue corner Quirino Highway", position: [14.7382, 121.0707], color: "brown" },
+            { name: "Quezon City University Main Campus/Novaliches District Hospital", position: [14.7485, 121.0749], color: "lime" },
+            { name: "Quirino Highway, SM Novaliches", position: [14.7588, 121.0791], color: "magenta" },
+            { name: "Quirino Highway corner Forest Hills Drive", position: [14.7691, 121.0833], color: "teal" },
+            { name: "General Luis, Nova Bayan", position: [14.7794, 121.0875], color: "navy" },
+            { name: "General Luis corner Banahaw Street", position: [14.7897, 121.0917], color: "#006400" },
+            { name: "General Luis corner SB Road", position: [14.7999, 121.0959], color: "#8B008B" },
+        ];
+
+        // Add markers and labels for stops
+        stops.forEach((stop) => {
+            const marker = L.circleMarker(stop.position, {
+                color: stop.color,
+                radius: 8,
+                fillColor: stop.color,
+                fillOpacity: 0.8,
+            }).addTo(map);
+
+            marker.bindPopup(`<strong>${stop.name}</strong>`);
+
+            L.marker(stop.position, {
+                icon: L.divIcon({
+                    className: 'label-container',
+                    html: stop.name,
+                    iconSize: [250, 30],
+                    iconAnchor: [125, -10],
+                }),
+            }).addTo(map);
+        });
+
+        // Route between stops
+        L.Routing.control({
+            waypoints: stops.map(stop => L.latLng(stop.position)),
+            routeWhileDragging: true,
+            lineOptions: {
+                styles: [{ color: '#0051FF', weight: 4 }],
+            },
+            createMarker: function() {
+                return null;
+            },
+            show: false,
+        }).addTo(map);
+    </script>
+</body>
+</html>

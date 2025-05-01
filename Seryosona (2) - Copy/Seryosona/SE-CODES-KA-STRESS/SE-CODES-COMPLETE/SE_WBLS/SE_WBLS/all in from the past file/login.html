@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityBus Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <img src="Pictures/QCLogo.png.png" alt="CityBus Logo" class="header-logo">
+        </div>
+    </header>    
+   
+
+
+    <main>
+        <div class="banner">
+            <div class="banner-text">
+                <h1 class="banner-text1">Never Miss a Seat -<br>Check Availability Now!</h1>
+            </div>
+        </div>
+
+        <div class="login-container">
+            <div class="logo">
+                <img src="Pictures/locationmainlogo.png" alt="CityBus Logo">
+                <h1>CITYBUS</h1>
+            </div>
+
+            <form class="login-form">
+                <input type="email" placeholder="Enter e-mail address" required>
+                
+                <div class="user-type">
+                    <input type="radio" id="user" name="role" checked>
+                    <label for="user">User</label>
+
+                    <input type="radio" id="conductor" name="role">
+                    <label for="conductor">Conductor</label>
+
+                    <input type="radio" id="admin" name="role">
+                    <label for="admin">Admin</label>
+                </div>
+
+                <input type="password" placeholder="Password" required>
+
+                <p class="register-link">Don't have an account? <a href="SignUp.html">Register</a></p>
+
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </div>
+    </footer>    
+</body>
+</html>

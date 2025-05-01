@@ -1,0 +1,322 @@
+    
+
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('SE_WBLS/Pictures/panelforgot.png') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        display: flex;
+        max-width: 900px;
+        width: 90%;
+        overflow: hidden;
+        flex-direction: row;
+    }
+
+    /* left section panel */
+
+    .left-section {
+        background: 
+            linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 102, 204, 0.7)), 
+            url('SE_WBLS/Pictures/panelforgot.png') no-repeat center center;
+        background-size: cover;
+        color: white;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 45%;
+    }
+    
+    .left-section .header-logo {
+        max-height: 60px;
+        margin-bottom: 20px;
+    }
+
+    .left-section .promo-content h1 {
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);   
+        font-size: 2rem;
+        margin: 10px 0;
+        line-height: 1.2;
+    }
+
+    .left-section .ok-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #ccddff;
+        margin-top: 20px;
+    }
+
+    /* Right section panel */
+    .right-section {
+        background-color: white;
+        width: 50%;
+        padding: 19;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .right-section .form-container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .logo-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .citybus-logo {
+        max-height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .logo-container h2 {
+        color: #003366;
+        margin: 0;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 15px;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        font-size: 15px;
+        cursor: pointer;
+        flex: 1;
+    }
+
+    .register-button {
+        background-color: #003366;
+        color: white;
+    }
+
+    .register-button:hover {
+        background-color: #0055cc;
+    }
+
+    .clear-button {
+        background-color: red;
+        color: #333;
+    }
+
+    .clear-button:hover {
+        background-color: red;
+    }
+    /*Terms And Policies*/
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        background-color: rgb(255, 255, 255);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .modal-overlay.show {
+        display: block;
+        opacity: 1;
+    }
+    .modal-content {
+        background: linear-gradient(135deg, #fff8f8, #939292);
+        margin: 60px auto;
+        padding: 30px;
+        width: 90%;
+        max-width: 800px;
+        border-radius: 12px;
+        font-family: 'Times New Roman', Times, serif;
+        color: #333;
+        max-height: 90vh;
+        overflow-y: auto;
+        animation: slideIn 0.4s ease;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+        text-align: left;
+        font-size: 18px; /* Font size for readability */
+        line-height: 1.6; /* Line height for better spacing */
+    }
+
+    .modal-content h2 {
+        font-size: 24px; /* Larger font for headings */
+        margin-bottom: 20px; /* Space below heading */
+    }
+
+    .modal-content p, .modal-content ul, .modal-content ol {
+        font-size: inherit; /* Inherit font size */
+        line-height: inherit; /* Inherit line height */
+    }
+
+    
+    
+    
+    @keyframes slideIn {
+        from {
+        transform: translateY(100px);
+        opacity: 0;
+        }
+        to {
+        transform: translateY(0);
+        opacity: 1;
+        }
+    }
+    
+    .close-button {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #888;
+        transition: color 0.3s ease;
+    }
+    
+    .close-button:hover {
+        color: #333;
+    }
+    
+    .modal-content h2,
+    .modal-content h3 {
+        margin-top: 15px;
+        color: #222;
+    }
+
+
+    /* Footer Links */
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .footer-links a {
+        color: rgb(226, 180, 180);
+        text-decoration: none;
+        font-size: 20px;
+        margin: 5px 0;
+        display: block;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+        color: blue;
+    }
+
+    /* Social Icons */
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Style for Font Awesome icons */
+    .fa {
+        font-size: 25px !important;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
+    }
+
+    .fa:hover {
+        opacity: 0.7;
+        color: blue;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            width: 95%;
+        }
+
+        .left-section, .right-section {
+            width: 100%;
+            padding: 30px 20px;
+        }
+
+        .left-section .promo-content h1 {
+            font-size: 1.5rem;
+        }
+
+        .left-section .ok-text {
+            font-size: 2rem;
+        }
+
+        .right-section .logo-container h2 {
+            font-size: 2.5rem; /* Default font size */
+            color: #003366;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .right-section .logo-container h2 {
+                font-size: 2rem; /* Smaller font size for smaller screens */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .right-section .logo-container h2 {
+                font-size: 1.5rem; /* Even smaller font size for mobile */
+            }
+        }
+        
+    }

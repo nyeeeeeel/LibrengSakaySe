@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - CityBus</title>
+    <link rel="stylesheet" href="../static/forgotpass.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<body>
+    <div>
+        <button class="back-btn" id="backBtn">Back</button>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    </div>
+    <div class="container">
+        <div class="left-section">
+        </div>
+        <div class="right-section">
+            <div class="logo-container">
+                <div class="blank-logo">
+                    <img src="static/Pictures/logolocation.png" alt="Your CityBus Logo" class="citybus-logo">
+                </div>
+                <h2 class="brand-name">CITYBUS</h2>
+            </div>
+            <h3 class="form-title">Forgot Your Password?</h3>
+            <p class="form-description">Enter your email address and a verification code will be sent to reset your password.</p>
+            
+            <form class="forgot-password-form" id="resetPasswordForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group verification-group">
+                    <label for="verification_code">Verification Code:</label>
+                    <div class="input-button-group">
+                        <input type="text" id="verification_code" name="verification_code" placeholder="Enter code" disabled>
+                        <button type="button" class="send-code-button" id="sendCodeBtn">Send Code</button>
+                   
+                    <p id="sendCodeMessage" class="message"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="new_password">New Password:</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="new_password" name="new_password" placeholder="Enter new password" required disabled>
+                        <i class="fa-solid fa-eye toggle-password" data-target="new_password"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm New Password:</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password" required disabled>
+                        <i class="fa-solid fa-eye toggle-password" data-target="confirm_password"></i>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="confirm-button" disabled>Confirm</button>
+                    <button type="button" class="cancel-button">Clear</button>
+                    <p id="resetPasswordMessage" class="message"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('backBtn').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to go back and logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, go back',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/logout', { method: 'POST' })
+                        .then(response => response.json())
+                        .then(data => {
+                            sessionStorage.removeItem('conductorId');
+                            window.location.href = 'login.html';
+                        })
+                        .catch(error => {
+                            console.error('Error during Back:', error);
+                            sessionStorage.removeItem('conductorId');
+                            window.location.href = 'login.html';
+                        });
+                }
+            });
+        });
+       
+    
+
+        // Password visibility toggle
+        document.querySelectorAll('.toggle-password').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const input = document.getElementById(icon.getAttribute('data-target'));
+                const isPassword = input.type === 'password';
+                input.type = isPassword ? 'text' : 'password';
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
+    const resetPasswordMessage = document.getElementById('resetPasswordMessage');
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const sendCodeMessage = document.getElementById('sendCodeMessage');
+    const verificationCodeInput = document.getElementById('verification_code');
+    const newPasswordInput = document.getElementById('new_password');
+    const confirmPasswordInput = document.getElementById('confirm_password');
+    const confirmButton = document.querySelector('.confirm-button');
+
+    sendCodeBtn.addEventListener('click', function() {
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+        // No email entered
+        return Swal.fire({
+            icon: 'warning',
+            title: 'Oops!',
+            text: 'Please enter your email address.',
+            confirmButtonColor: '#d33'
+        });
+    }
+
+    fetch('/send_reset_code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Verification Sent',
+                text: 'Verification code sent successfully!',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            // enable the fields
+            verificationCodeInput.disabled = false;
+            newPasswordInput.disabled     = false;
+            confirmPasswordInput.disabled = false;
+            confirmButton.disabled        = false;
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Send Failed',
+                text: data.message
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error sending reset code:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to send verification code. Please try again.'
+        });
+    });
+});
+
+
+    resetPasswordForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const email = document.getElementById('email').value;
+        const newPassword = document.getElementById('new_password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        const verificationCode = document.getElementById('verification_code').value;
+
+        fetch('/reset_password', { // Changed the endpoint to /reset_password
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                verification_code: verificationCode,
+                new_password: newPassword,
+                confirm_password: confirmPassword,
+            }),
+        })
+        .then(response => response.json())
+.then(data => {
+    if (data.success) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Password Reset',
+            text: data.message,
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'login.html';
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Reset Failed',
+            text: data.message
+        });
+    }
+})
+.catch(error => {
+    console.error('Error resetting password:', error);
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An unexpected error occurred.'
+    });
+});
+
+
+    document.querySelector('.cancel-button').addEventListener('click', function() {
+        resetPasswordForm.reset();
+        resetPasswordMessage.textContent = '';
+        resetPasswordMessage.className = 'message';
+        sendCodeMessage.textContent = '';
+        sendCodeMessage.className = 'message';
+        verificationCodeInput.disabled = true;
+        newPasswordInput.disabled = true;
+        confirmPasswordInput.disabled = true;
+        confirmButton.disabled = true;
+    });
+
+    // Disable password fields and confirm button initially
+    verificationCodeInput.disabled = true;
+    newPasswordInput.disabled = true;
+    confirmPasswordInput.disabled = true;
+    confirmButton.disabled = true;
+    });
+});
+    </script>
+</body>
+</html>

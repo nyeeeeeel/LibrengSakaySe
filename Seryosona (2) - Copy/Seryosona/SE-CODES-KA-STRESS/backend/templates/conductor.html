@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conductor Dashboard with Map</title>
+    <link rel="stylesheet" type="text/css" href="../static/conductorstyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        /* Style for the map container */
+        .map-section-embedded {
+            width: 112%;
+            height: 500px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <img src="../static/Pictures/QCLogo.png.png" alt="CityBus Logo" class="header-logo">
+        </div>
+        <button class="logout-btn" id="logoutBtn">Log Out</button>
+    </header>
+
+    <div class="container">
+        <div class="content">
+
+            <div class="map-section">
+                <div class="map-header">
+                    <img src="..\static\Pictures\mainlogo.png" alt="CityBus Logo" class="map-logo">
+                    <h3>Map</h3>
+                </div>
+                <iframe src="../static/map.html" class="map-section-embedded" frameborder="0"></iframe>
+            </div>
+
+            <div class="form-section">
+                <div class="input-box">
+                    <label><b>Estimated Arrival:</b></label>
+                    <input type="text" placeholder="Enter Estimated Time" id="estimated-arrival"/>
+                </div>
+
+                <div class="input-box">
+                    <label><b>Available Seats:</b></label>
+                    <select id="available-sits">
+                        <option value="" disabled selected>Select Available Seats</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                    </select>
+                </div>
+
+                <div class="dropdown-box">
+                    <label><b>Select Bus Stop: From City Hall to General Luis</b></label>
+                    <select id="bus-stop-from">
+                        <option value="" disabled selected>Choose a bus stop</option>
+                        <option value="City Hall">From Quezon City Hall NHA Interchange to North Avenue, Veterans Hospital/Vertis North</option>
+                        <option value="North Ave. Bus Stop 1">From North Avenue, Veterans Hospital/Vertis North to Mindanao Avenue corner Road 1</option>
+                        <option value="Mindanao Bus Stop 2">From Mindanao Avenue corner Road 1 to Mindanao Avenue, Tullahan Bridge</option>
+                        <option value="Mindanao Bus Stop 3">From Mindanao Avenue, Tullahan Bridge to Mindanao Avenue corner Congressional Avenue</option>
+                        <option value="Mindanao Bus Stop 4">From Mindanao Avenue corner Congressional Avenue to Mindanao Avenue corner Tandang Sora Avenue</option>
+                        <option value="Mindanao Bus Stop 5">From Mindanao Avenue corner Tandang Sora Avenue to Mindanao Avenue corner D. Muñoz Street</option>
+                        <option value="Mindanao Bus Stop 6">From Mindanao Avenue corner D. Muñoz Street to Mindanao Avenue corner Old Sauyo Road</option>
+                        <option value="Mindanao Bus Stop 7">From Mindanao Avenue corner Old Sauyo Road to Mindanao Avenue corner Quirino Highway</option>
+                        <option value="Mindanao Bus Stop 8">From Mindanao Avenue corner Quirino Highway to Quezon City University Main Campus/Novaliches District Hospital</option>
+                        <option value="QCU Bus Stop 9">From Quezon City University Main Campus/Novaliches District Hospital to Quirino Highway, SM Novaliches</option>
+                        <option value="S.M Novaliches Bus Stop 10">From Quirino Highway, SM Novaliches to Quirino Highway corner Forest Hills Drive</option>
+                        <option value="Forest Hills Bus Stop 11">From Quirino Highway corner Forest Hills Drive to General Luis, Nova Bayan</option>
+                        <option value="Novaliches Bayan Bus Stop 12">From General Luis, Nova Bayan to General Luis corner Banahaw Street</option>
+                        <option value="Banahaw Bus Stop 13">From General Luis corner Banahaw Street to General Luis corner SB Road</option>
+                    </select>
+                </div>
+
+                <div class="dropdown-box">
+                    <label><b>Select Bus Stop: From General Luis to City Hall</b></label>
+                    <select id="bus-stop-to">
+                        <option value="" disabled selected>Choose a bus stop</option>
+                        <option value="San Bartolome Road Bus Stop 1">From General Luis corner SB Road to General Luis corner Banahaw Street</option>
+                        <option value="Banahaw Bus Stop 2">From General Luis corner Banahaw Street to General Luis, Nova Bayan</option>
+                        <option value="Novaliches Bayan Bus Stop 3">From General Luis, Nova Bayan to Quirino Highway corner Forest Hills Drive</option>
+                        <option value="Forest Hills Bus Stop 4">From Quirino Highway corner Forest Hills Drive to Quirino Highway, SM Novaliches</option>
+                        <option value="S.M Novaliches Bus Stop 5">From Quirino Highway, SM Novaliches to Quezon City University Main Campus/Novaliches District Hospital</option>
+                        <option value="QCU Bus Stop 6">From Quezon City University Main Campus/Novaliches District Hospital to Mindanao Avenue corner Quirino Highway</option>
+                        <option value="Mindanao Bus Stop 7">From Mindanao Avenue corner Quirino Highway to Mindanao Avenue corner Old Sauyo Road</option>
+                        <option value="Mindanao Bus Stop 8">From Mindanao Avenue corner Old Sauyo Road to Mindanao Avenue corner D. Muñoz Street</option>
+                        <option value="Mindanao Bus Stop 9">From Mindanao Avenue corner D. Muñoz Street to Mindanao Avenue corner Tandang Sora Avenue</option>
+                        <option value="Mindanao Bus Stop 10">From Mindanao Avenue corner Tandang Sora Avenue to Mindanao Avenue corner Congressional Avenue</option>
+                        <option value="Mindanao Bus Stop 11">From Mindanao Avenue corner Congressional Avenue to Mindanao Avenue, Tullahan Bridge</option>
+                        <option value="Mindanao Bus Stop 12">From Mindanao Avenue, Tullahan Bridge to Mindanao Avenue corner Road 1</option>
+                        <option value="Mindanao Bus Stop 13">From Mindanao Avenue corner Road 1 to North Avenue, Veterans Hospital/Vertis North</option>
+                        <option value="North Avenue Bus Stop 14">From North Avenue, Veterans Hospital/Vertis North to Quezon City Hall NHA Interchange</option>
+                    </select>
+                </div>
+
+                <div class="notes-box">
+                    <label><b>Notes:</b></label>
+                    <textarea rows="3" placeholder="Add Notes Here" id="notes"></textarea>
+                </div>
+
+                <button class="save-btn">Save</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" id="openModalLink">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61575131517859" class="fa fa-facebook" target="_blank"></a>
+          <a href="https://twitter.com/QcBus58146" class="fa fa-twitter" target="_blank"></a>
+          <a href="https://www.instagram.com/qcbuslibrengsakayavailabus/" class="fa fa-instagram" target="_blank"></a>
+        </div>
+    </footer>
+
+            <div id="tosModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+
+            <h2>📄 Terms of Service</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+            <p>Welcome to the Libreng Sakay Web System! These Terms of Service govern your use of our platform, which provides seat availability and estimated arrival time information for the Libreng Sakay route between Quezon City Hall and General Luis Avenue.</p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By using our website, you agree to be bound by these Terms. If you do not agree, please refrain from using the service.</p>
+
+            <h3>2. Description of Service</h3>
+            <p>The system allows commuters to view approximate seat availability and target bus arrival times. Bus operators can update seat counts and estimated arrival information. Users are also welcome to submit feedback to help improve the service.</p>
+            <p><em>Note: Arrival times are estimates based on operator inputs and are not guaranteed due to traffic or other unforeseen delays.</em></p>
+
+            <h3>3. Use of the Service</h3>
+            <p>You agree to use the platform only for lawful purposes. You must not interfere with or disrupt the service or its servers, nor attempt unauthorized access to the system.</p>
+
+            <h3>4. Limitations and Availability</h3>
+            <p>The system currently supports only the route from Quezon City Hall to General Luis Avenue. It is accessible exclusively via web browsers, as no mobile application is available. Additionally, real-time GPS tracking is not included; all data is manually input by bus operators.</p>
+
+            <h3>5. Intellectual Property</h3>
+            <p>All content, including design, logos, and text, is the property of the Libreng Sakay Web System and may not be copied or reproduced without permission.</p>
+
+            <h3>6. Disclaimer</h3>
+            <p>The information provided is intended for general planning purposes only. We do not guarantee accuracy or real-time updates and are not responsible for delays, missed rides, or any travel inconveniences.</p>
+
+            <h3>7. Termination</h3>
+            <p>We reserve the right to suspend or terminate access to users who violate these terms or misuse the system.</p>
+
+            <h3>8. Changes to the Terms</h3>
+            <p>We may update these Terms from time to time. Users will be notified of any changes via the website.</p>
+
+            <hr>
+
+            <h2>🔒 Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> [Insert Date]</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>Bus operators may input available seat counts and estimated arrival times. We also collect voluntary user feedback via text-based forms. Additionally, anonymized website analytics data—such as pages visited and time spent on the site—may be gathered to help us improve the platform.</p>
+
+            <p><strong>We do not collect:</strong> personal information like names, email addresses, or phone numbers. We also do not use GPS or location tracking data.</p>
+
+            <h3>2. Use of Information</h3>
+            <p>The data we collect is used solely to improve user experience, evaluate systemperformance, understand commuter satisfaction, and identify issues.</p>
+
+            <h3>3. Data Security</h3>
+            <p>We implement standard security measures to protect submitted data from unauthorized access or disclosure. However, no system can be guaranteed 100% secure.</p>
+
+            <h3>4. Sharing of Data</h3>
+            <p>We do not sell, rent, or share your personal data with third parties. Feedback may be reviewed internally to improve service quality.</p>
+
+            <h3>5. Cookies</h3>
+            <p>Cookies may be used to enhance your experience on the site. You can adjust your browser settings to disable or reject cookies if preferred.</p>
+
+            <h3>6. Your Rights</h3>
+            <p>Since we do not store personal data, there is no personal information to modify or delete. If you believe any content violates your privacy, please contact us.</p>
+
+            <h3>7. Updates to This Policy</h3>
+            <p>This Privacy Policy may be updated from time to time. Please review it periodically to stay informed of any changes.</p>
+        </div>
+    </div>
+
+    <script>
+       const openModalLink = document.getElementById('openModalLink');
+  const modal = document.getElementById('tosModal');
+  const closeModal = document.getElementById('closeModal');
+  const saveBtn = document.querySelector('.save-btn'); // Get the Save button
+  const busStopFrom = document.getElementById('bus-stop-from');
+  const busStopTo = document.getElementById('bus-stop-to');
+
+  openModalLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    modal.classList.add('show');
+  });
+
+  closeModal.addEventListener('click', function() {
+    modal.classList.remove('show');
+  });
+
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+
+  saveBtn.addEventListener('click', function() {
+    const estimatedArrival = document.getElementById('estimated-arrival').value;
+    const availableSeat = document.getElementById('available-sits').value;
+    // Get the selected value from either dropdown (whichever is chosen)
+    const nextStopFromValue = busStopFrom.value;
+    const nextStopToValue = busStopTo.value;
+    const nextStop = nextStopFromValue || nextStopToValue; // Use the value from whichever dropdown has a selection
+    const notes = document.getElementById('notes').value;
+
+    if (!estimatedArrival || !availableSeat || !nextStop) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        html: `Please complete all fields:<br>
+                  • Estimated Arrival<br>
+                  • Available Seats<br>
+                  • Select a Bus Stop`,
+        confirmButtonText: 'Understood',
+        confirmButtonColor: '#d33',
+        background: '#fff8f0',
+        timer: 3000,
+        timerProgressBar: true
+      });
+      return;
+    }
+
+    const data = {
+      eta: estimatedArrival,
+      available_seat: availableSeat,
+      next_stop: nextStop,
+      notes: notes
+    };
+
+    fetch('/conductor/update_bus_info', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: result.message,
+          confirmButtonColor: '#3085d6',
+          background: '#fff8f0',
+          timer: 2000,
+          timerProgressBar: true
+        });
+        // Optionally clear the form fields
+        document.getElementById('estimated-arrival').value = '';
+        document.getElementById('available-sits').value = '';
+        busStopFrom.selectedIndex = 0;
+        busStopTo.selectedIndex = 0;
+        document.getElementById('notes').value = '';
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: result.message,
+          confirmButtonColor: '#d33',
+          background: '#fff8f0',
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'An error occurred while updating bus information.',
+        background: '#fff8f0',
+      });
+    });
+  });
+
+  // Logout button functionality
+
+  document.getElementById('logoutBtn').addEventListener('click', function () {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to go back and logout?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, go back',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch('/logout', { method: 'POST' })
+          .then(response => response.json())
+          .then(data => {
+            sessionStorage.removeItem('conductorId');
+            window.location.href = 'login.html';
+          })
+          .catch(error => {
+            console.error('Error during Back:', error);
+            sessionStorage.removeItem('conductorId');
+            window.location.href = 'login.html';
+          });
+      }
+    });
+  });
+    </script>
+
+
+
+
+</body>
+</html>
