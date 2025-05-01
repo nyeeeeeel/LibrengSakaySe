@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityBus Sign Up</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/banner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="path/to/notifications.js"></script>
+
+
+    <style>
+        /* Notification Styles */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: black;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 250px;
+            max-width: 400px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .notification-container.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .notification-container.error {
+            background-color: #FF5252;
+            color: white;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .input-button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-button-group {
+    display: flex;
+    gap: 6px; /* smaller gap between input and button */
+    align-items: center;
+    max-width: 100%; /* ensures it doesn't overflow */
+}
+
+.send-code-button {
+    padding: 2px 6px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;       /* less rounded */
+    cursor: pointer;
+    font-size: 0.6em;
+    height: 35px;
+    width: 70px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+
+
+        .send-code-button:hover {
+            background-color: #0056b3;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="top-bar">
+            <img src="../static/Pictures/QCLogo.png.png" alt="CityBus Logo" class="header-logo">
+        </div>
+        <button type="button" class="back-btn" onclick="location.href='login.html'">Back</button>
+    </header>
+
+    <main>
+        <section class="banner1">
+            <h1 class="banner-text1">Join the CityBus Community -<br>Sign Up Today!</h1>
+        </section>
+
+        <section class="login-container">
+            <div class="logo">
+                <img src="..\static\Pictures\logolocation.png" alt="CityBus Logo">
+                <h1>CITYBUS</h1>
+            </div>
+
+            <form class="login-form" id="signupForm" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <p class="error-message" id="email-error"></p>
+
+                <label for="verification_code">Verification Code:</label>
+                <div class="input-button-group">
+                    <input type="text" id="verification_code" name="verification_code" placeholder="Enter code" disabled>
+                    <button type="button" class="send-code-button" id="sendCodeBtn">Send Code</button>
+                </div>
+                <p class="error-message" id="verification-error"></p>
+                <p class="error-message" id="send-code-message"></p>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required disabled>
+                <p class="error-message" id="password-error"></p>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required disabled>
+                <p class="error-message" id="confirm-password-error"></p>
+
+                <button type="submit" class="signup-button" disabled>Sign Up</button>
+                <p class="error-message" id="signup-error"></p>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const signupForm = document.getElementById("signupForm");
+            const emailInput = document.getElementById("email");
+            const verificationCodeInput = document.getElementById("verification_code");
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirm-password");
+            const emailError = document.getElementById("email-error");
+            const verificationError = document.getElementById("verification-error");
+            const passwordError = document.getElementById("password-error");
+            const confirmPasswordError = document.getElementById("confirm-password-error");
+            const signupError = document.getElementById("signup-error");
+            const sendCodeBtn = document.getElementById("sendCodeBtn");
+            const sendCodeMessage = document.getElementById("send-code-message");
+            const signupButton = document.querySelector(".signup-button");
+
+            // Disable verification code, password, confirm password, and signup button initially
+            verificationCodeInput.disabled = true;
+            passwordInput.disabled = true;
+            confirmPasswordInput.disabled = true;
+            signupButton.disabled = true;
+
+            sendCodeBtn.addEventListener("click", function () {
+                const email = emailInput.value.trim();
+                if (!email) {
+                    showNotification("Email is required.", 'error');
+                    return;
+                } else if (!email.includes("@")) {
+                    showNotification("Email must contain '@'.", 'error');
+                    return;
+                }
+
+                fetch('/send_signup_code', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email: email })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Verification Sent',
+            text: 'Verification code sent successfully!',
+            timer: 2000,
+            showConfirmButton: false
+        });
+        // Enable the fields after success
+        verificationCodeInput.disabled = false;
+        passwordInput.disabled = false;
+        confirmPasswordInput.disabled = false;
+        signupButton.disabled = false;
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Send Failed',
+            text: data.message
+        });
+    }
+})
+.catch(error => {
+    console.error('Error sending signup code:', error);
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to send verification code. Please try again.'
+    });
+});
+
+            });
+
+            signupForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const email = emailInput.value.trim();
+                const verificationCode = verificationCodeInput.value.trim();
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                // Clear previous errors
+                emailError.textContent = "";
+                verificationError.textContent = "";
+                passwordError.textContent = "";
+                confirmPasswordError.textContent = "";
+                signupError.textContent = "";
+
+                let hasErrors = false;
+
+                // Client-side validation
+                if (!email) {
+                    emailError.textContent = "Email is required.";
+                    hasErrors = true;
+                } else if (!email.includes("@")) {
+                    showNotification("Email must contain '@'.", 'error');
+                    hasErrors = true;
+                }
+
+                if (!verificationCode) {
+                    verificationError.textContent = "Verification code is required.";
+                    hasErrors = true;
+                }
+
+                if (!password) {
+                    passwordError.textContent = "Password is required.";
+                    hasErrors = true;
+                } else if (password.length < 6) {
+                    passwordError.textContent = "Password must be at least 6 characters long.";
+                    hasErrors = true;
+                }
+
+                if (password !== confirmPassword) {
+                    confirmPasswordError.textContent = "Passwords do not match.";
+                    hasErrors = true;
+                }
+
+                if (hasErrors) {
+                    return;
+                }
+
+                // Send signup data to the backend with verification code
+                fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email, password: password, verification_code: verificationCode })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errorData => {
+                            const errorMessage = errorData.message || `HTTP error! status: ${response.status}`;
+                            throw new Error(errorMessage);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        showNotification(data.message, 'success', function () {
+                            window.location.href = "login.html";
+                        });
+                    } else {
+                        showNotification(data.message, 'error'); // Display backend error in notification
+                    }
+                })
+                .catch(error => {
+                    showNotification("Failed to connect to the server: " + error.message, 'error');
+                    console.error('Error during signup:', error);
+                });
+            });
+
+            // Function to show a notification at the top
+            function showNotification(message, type = 'info', callback = null) {
+                const existingNotification = document.querySelector(".notification-container");
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                const notification = document.createElement("div");
+                notification.className = `notification-container ${type}`;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.remove();
+                    if (callback) callback();
+                }, 2000);
+            }
+        });
+    </script>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" id="openModalLink">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </div>
+    </footer>
+
+    <div id="tosModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+
+            <h2>📄 Terms of Service</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+            <p>Welcome to the Libreng Sakay Web System! These Terms of Service govern your use of our platform, which
+                provides seat availability and estimated arrival time information for the Libreng Sakay route between
+                Quezon City Hall and General Luis Avenue.</p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By using our website, you agree to be bound by these Terms. If you do not agree, please refrain from using
+                the service.</p>
+
+            <h3>2. Description of Service</h3>
+            <p>The system allows commuters to view approximate seat availability and target bus arrival times. Bus
+                operators can update seat counts and estimated arrival information. Users are also welcome to submit
+                feedback to help improve the service.</p>
+            <p><em>Note: Arrival times are estimates based on operator inputs and are not guaranteed due to traffic or
+                    other unforeseen delays.</em></p>
+
+            <h3>3. Use of the Service</h3>
+            <p>You agree to use the platform only for lawful purposes. You must not interfere with or disrupt the service
+                or its servers, nor attempt unauthorized access to the system.</p>
+
+            <h3>4. Limitations and Availability</h3>
+            <p>The system currently supports only the route from Quezon City Hall to General Luis Avenue. It is accessible
+                exclusively via webbrowsers, as no mobile application is available. Additionally, real-time GPS tracking is
+                not included; all data is manually input by bus operators.</p>
+
+            <h3>5. Intellectual Property</h3>
+            <p>All content, including design, logos, and text, is the property of the Libreng Sakay Web System and may not
+                be copied or reproduced without permission.</p>
+
+            <h3>6. Disclaimer</h3>
+            <p>The information provided is intended for general planning purposes only. We do not guarantee accuracy or
+                real-time updates and are not responsible for delays, missed rides, or any travel inconveniences.</p>
+
+            <h3>7. Termination</h3>
+            <p>We reserve the right to suspend or terminate access to users who violate these terms or misuse the system.</p>
+
+            <h3>8. Changes to the Terms</h3>
+            <p>We may update these Terms from time to time. Users will be notified of any changes via the website.</p>
+
+            <hr>
+
+            <h2>🔒 Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>Bus operators may input available seat counts and estimated arrival times. We also collect voluntary user
+                feedback via text-based forms. Additionally, anonymized website analytics data—such as pages visited and
+                time spent on the site—may be gathered to help us improve the platform.</p>
+
+            <h3>2. Use of Information</h3>
+            <p>The data we collect is used solely to improve user experience, evaluate system performance, understand
+                commuter satisfaction, and identify issues.</p>
+
+            <h3>3. Data Security</h3>
+            <p>We implement standard security measures to protect submitted data from unauthorized access or disclosure.
+                However, no system can be guaranteed 100% secure.</p>
+
+            <h3>4. Sharing of Data</h3>
+            <p>We do not sell, rent, or share your personal data with third parties. Feedback may be reviewed internally to
+                improve service quality.</p>
+
+            <h3>5. Cookies</h3>
+            <p>Cookies may be used to enhance your experience on the site. You can adjust your browser settings to disable
+                or reject cookies if preferred.</p>
+
+            <h3>6. Your Rights</h3>
+            <p>Since we do not store personal data, there is no personal information to modify or delete. If you believe
+                any content violates your privacy, please contact us.</p>
+
+            <h3>7. Updates to This Policy</h3>
+            <p>This Privacy Policy may be updated from time to time. Please review it periodically to stay informed of any
+                changes.</p>
+        </div>
+    </div>
+    <script>
+        const openModalLink = document.getElementById('openModalLink');
+        const modal = document.getElementById('tosModal');
+        const closeModal = document.getElementById('closeModal');
+
+        openModalLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+
+        closeModal.addEventListener('click', function () {
+            modal.classList.remove('show');
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+</html>

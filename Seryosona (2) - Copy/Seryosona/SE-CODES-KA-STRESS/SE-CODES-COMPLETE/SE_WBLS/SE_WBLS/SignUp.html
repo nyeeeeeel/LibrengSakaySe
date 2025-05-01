@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityBus Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="banner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <header>  
+    <div class="top-bar">
+        <img src="Pictures/QCLogo.png.png" alt="CityBus Logo" class="header-logo">
+    </div>
+    <!-- Back Button -->
+    <button type="button" class="back-btn" onclick="location.href='Login.html'">Back</button>
+</header>     
+
+    <!-- Main Layout -->
+    <main>
+        <!-- Left Banner Section -->
+        <section class="banner1">
+            <h1 class="banner-text1">Never Miss a Seat -<br>Check Availability Now!</h1>
+        </section>
+
+        <!-- Right Login Section -->
+        <section class="login-container">
+            <div class="logo">
+                <img src="Pictures\logolocation.png" alt="CityBus Logo">
+                <h1>CITYBUS</h1>
+            </div>
+
+            <form class="login-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+        </section>
+    </main>
+
+    <!--NOTIFICATION-->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const signupForm = document.querySelector(".login-form");
+    
+            signupForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent default form submission
+    
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+    
+                // Check if email contains "@"
+                if (!email.includes("@")) {
+                    showNotification("Email must contain '@'.");
+                    return;
+                }
+    
+                // Validate password match
+                if (password !== confirmPassword) {
+                    showNotification("Passwords do not match.");
+                    return;
+                }
+    
+                // Show success message
+                showNotification("Successfully Signed Up!", function () {
+                    window.location.href = "Login.html"; // Redirect to Login page
+                });
+            });
+    
+            // Function to show a notification at the top
+            function showNotification(message, callback = null) {
+                // Remove existing notification if present
+                const existingNotification = document.querySelector(".notification-container");
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+    
+                // Create notification container
+                const notification = document.createElement("div");
+                notification.className = `notification-container`;
+                notification.textContent = message;
+    
+                // Append to body
+                document.body.appendChild(notification);
+    
+                // Remove notification after 2 seconds and execute callback if provided
+                setTimeout(() => {
+                    notification.remove();
+                    if (callback) callback();
+                }, 2000);
+            }
+        });
+    </script>
+    
+    <style>
+    /* Notification Styles */
+    .notification-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        color: black;
+        padding: 12px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        min-width: 250px;
+        max-width: 400px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+    </style>
+    
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+          <a href="#" id="openModalLink">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-instagram"></a>
+        </div>
+      </footer>
+      
+      <!-- Modal -->
+      <div id="tosModal" class="modal-overlay">
+        <div class="modal-content">
+          <span class="close-button" id="closeModal">&times;</span>
+      
+          <h2>📄 Terms of Service</h2>
+          <p><strong>Effective Date:</strong> May 05, 2025</p>
+          <p>Welcome to the Libreng Sakay Web System! These Terms of Service govern your use of our platform, which provides seat availability and estimated arrival time information for the Libreng Sakay route between Quezon City Hall and General Luis Avenue.</p>
+      
+          <h3>1. Acceptance of Terms</h3>
+          <p>By using our website, you agree to be bound by these Terms. If you do not agree, please refrain from using the service.</p>
+      
+          <h3>2. Description of Service</h3>
+          <p>The system allows commuters to view approximate seat availability and target bus arrival times. Bus operators can update seat counts and estimated arrival information. Users are also welcome to submit feedback to help improve the service.</p>
+          <p><em>Note: Arrival times are estimates based on operator inputs and are not guaranteed due to traffic or other unforeseen delays.</em></p>
+      
+          <h3>3. Use of the Service</h3>
+          <p>You agree to use the platform only for lawful purposes. You must not interfere with or disrupt the service or its servers, nor attempt unauthorized access to the system.</p>
+      
+          <h3>4. Limitations and Availability</h3>
+          <p>The system currently supports only the route from Quezon City Hall to General Luis Avenue. It is accessible exclusively via web browsers, as no mobile application is available. Additionally, real-time GPS tracking is not included; all data is manually input by bus operators.</p>
+      
+          <h3>5. Intellectual Property</h3>
+          <p>All content, including design, logos, and text, is the property of the Libreng Sakay Web System and may not be copied or reproduced without permission.</p>
+      
+          <h3>6. Disclaimer</h3>
+          <p>The information provided is intended for general planning purposes only. We do not guarantee accuracy or real-time updates and are not responsible for delays, missed rides, or any travel inconveniences.</p>
+      
+          <h3>7. Termination</h3>
+          <p>We reserve the right to suspend or terminate access to users who violate these terms or misuse the system.</p>
+      
+          <h3>8. Changes to the Terms</h3>
+          <p>We may update these Terms from time to time. Users will be notified of any changes via the website.</p>
+      
+          <hr>
+      
+          <h2>🔒 Privacy Policy</h2>
+          <p><strong>Effective Date:</strong> May 05, 2025</p>
+      
+          <h3>1. Information We Collect</h3>
+          <p>Bus operators may input available seat counts and estimated arrival times. We also collect voluntary user feedback via text-based forms. Additionally, anonymized website analytics data—such as pages visited and time spent on the site—may be gathered to help us improve the platform.</p>
+      
+          <p><strong>We do not collect:</strong> personal information like names, email addresses, or phone numbers. We also do not use GPS or location tracking data.</p>
+      
+          <h3>2. Use of Information</h3>
+          <p>The data we collect is used solely to improve user experience, evaluate system performance, understand commuter satisfaction, and identify issues.</p>
+      
+          <h3>3. Data Security</h3>
+          <p>We implement standard security measures to protect submitted data from unauthorized access or disclosure. However, no system can be guaranteed 100% secure.</p>
+      
+          <h3>4. Sharing of Data</h3>
+          <p>We do not sell, rent, or share your personal data with third parties. Feedback may be reviewed internally to improve service quality.</p>
+      
+          <h3>5. Cookies</h3>
+          <p>Cookies may be used to enhance your experience on the site. You can adjust your browser settings to disable or reject cookies if preferred.</p>
+      
+          <h3>6. Your Rights</h3>
+          <p>Since we do not store personal data, there is no personal information to modify or delete. If you believe any content violates your privacy, please contact us.</p>
+      
+          <h3>7. Updates to This Policy</h3>
+          <p>This Privacy Policy may be updated from time to time. Please review it periodically to stay informed of any changes.</p>
+        </div>
+      </div>
+      <script>
+        const openModalLink = document.getElementById('openModalLink');
+        const modal = document.getElementById('tosModal');
+        const closeModal = document.getElementById('closeModal');
+      
+        openModalLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          modal.classList.add('show');
+        });
+      
+        closeModal.addEventListener('click', function() {
+          modal.classList.remove('show');
+        });
+      
+        window.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.classList.remove('show');
+          }
+        });
+      </script>
+
+     
+</body>
+</html>

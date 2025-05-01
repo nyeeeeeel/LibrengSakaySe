@@ -1,0 +1,659 @@
+
+/* ========================= */
+/*       General Styles      */
+/* ========================= */
+html, body {
+    height: 100%; /* Full height of the page */
+    margin: 0; /* Remove default margin */
+    font-family: 'Arial', sans-serif; /* Set font family */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    background: url("Pictures/2.png") no-repeat center center fixed;
+    background-size: cover; /* Cover background image */
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 100%; /* Ensure full width */
+}
+
+/* ========================= */
+/*          Header           */
+/* ========================= */
+header {
+    background: #001F54; /* Dark background for header */
+    padding: 10px 30px; /* Padding inside header */
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between logo and other content */
+    height: 70px;
+    position: relative; /* For absolute positioned logout button */
+}
+
+.header-logo {
+    width: 60px; /* Set logo size */
+    height: auto;
+    margin-left: 10px;
+}
+
+/* ========================= */
+/*      Main Container       */
+/* ========================= */
+.container {
+    flex: 1;
+    width: 72%;
+    margin: 20px auto;
+    background-color: #09232be1; /* Dark background for content */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+/* ========================= */
+/*        Image Section      */
+/* ========================= */
+.image-section {
+    display: flex;
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
+    margin-bottom: 20px;
+}
+
+.image-box {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.orig-logo {
+    width: 150px; /* Logo width */
+    height: auto;
+}
+
+/* ========================= */
+/*      Content Layout       */
+/* ========================= */
+.content {
+    display: flex;
+    justify-content: space-between; /* Space between sections */
+    gap: 20px; /* Add gap between items */
+    flex-grow: 1;
+}
+
+
+/* ========================= */
+/*        Map Section        */
+/* ========================= */
+
+/* Ensure the map container and image are responsive */
+#map {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    position: relative;
+}
+
+#map img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    border-radius: 8px;
+}
+
+/* Adjust map-section header */
+.map-section {
+    text-align: center;
+    padding: 1rem;
+}
+
+.map-logo {
+    max-width: 50px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .form-section {
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    #map img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
+
+.map-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and text */
+    margin-bottom: 10px;
+}
+
+.map-logo {
+    width: 50px; /* Map logo size */
+    height: auto;
+    
+}
+
+/* ========================= */
+/*        Log Out Button     */
+/* ========================= */
+.logout-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 10px 15px;
+    background: linear-gradient(to right, #8B0000, #FF6347);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #e74c3c; /* Hover effect */
+}
+
+/* ========================= */
+/*        Form Section       */
+/* ========================= */
+.form-section {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: auto; /* Pushes it to the right */
+    padding-right: 20px; /* Optional: adds space from the right edge */
+    padding-top: 70px;
+    margin-top: 10px;
+}
+
+
+/* Styling for form fields */
+.input-box, .textarea-box, .notes-box {
+    width: 100%; /* Full width */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    background: linear-gradient(to right, #3498db, #0a3d62); 
+    padding: 0; /* Remove padding */
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+    overflow: hidden; /* Prevent overflow */
+}
+
+label {
+    font-size: 14px;
+    color: white;
+    padding: 10px; /* Add padding for spacing */
+}
+
+/* Input and Textarea Styling */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 0; /* Clean fit */
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 120px; /* Adjust height */
+    resize: vertical; /* Allow resizing vertically */
+}
+
+/* Save Button */
+.save-btn {
+    background: linear-gradient(to right, darkgreen, lightgreen);
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 50%;
+    text-align: center;
+    display: block; /* Center button */
+    margin: 0 auto;
+}
+
+.save-btn:hover {
+    background-color: rgb(6, 207, 6); /* Hover effect */
+}
+
+/* ========================= */
+/*    Dropdown Box Styling   */
+/* ========================= */
+.dropdown-box {
+    width: 100%;
+    background: linear-gradient(to right, #3498db, #0a3d62); 
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+    display: flex;
+    flex-direction: column; /* Stack label and select */
+}
+
+.dropdown-box label {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 5px; /* Space between label and select */
+    font-weight: bold;
+}
+
+.dropdown-box select {
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s; /* Smooth transition */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.dropdown-box select:hover,
+.dropdown-box select:focus {
+    border: 2px solid #4da8da; /* Focus border */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Focus shadow */
+}
+
+.input-box select {
+    width: 100%; /* Full width */
+    padding: 8px; /* Add padding */
+    font-size: 16px; /* Adjust font size */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    cursor: pointer;
+}
+
+.input-box select:focus {
+    border-color: #4d90fe; /* Focus border color */
+    background-color: #ffffff; /* White background on focus */
+}
+
+/* ========================= */
+/*          Footer           */
+/* ========================= */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    color: black;
+    margin-top: auto;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column; /* Stack footer links */
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 5px 0;
+    display: block;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* ========================= */
+/*      Social Icons         */
+/* ========================= */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.fa {
+    font-size: 25px !important;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: blue;
+}
+
+/* ========================= */
+/*       BANNER1 STYLES       */
+/* ========================= */
+.banner1 {
+    flex: 1;
+    padding: 20px;
+    max-width: 50%;
+}
+
+.banner-text1 {
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    top: -30px;
+    line-height: 1.2;
+}
+
+/* ========================= */
+/*       Modal Styling        */
+/* ========================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #fff8f8, #939292);
+    margin: 60px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.4s ease;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: left;
+    font-size: 18px; /* Font size for readability */
+    line-height: 1.6; /* Line height for better spacing */
+}
+
+.modal-content h2 {
+    font-size: 24px; /* Larger font for headings */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.modal-content p, .modal-content ul, .modal-content ol {
+    font-size: inherit; /* Inherit font size */
+    line-height: inherit; /* Inherit line height */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+.map-section h3 {
+    font-size: 40px;
+    font-weight: bold;
+    background: linear-gradient(to right, #7FDBFF, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    margin-left: 50px; /* Manually shifts the element to the right */
+}
+
+
+/* ========================= */
+/*    Responsive Styling     */
+/* ========================= */
+@media (max-width: 768px) {
+    /* Stack content vertically */
+    .content {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .map-section {
+        width: 90%;
+        min-height: 5px;
+        padding: 0px;
+        margin-bottom: 0px;
+        box-sizing: inherit;
+    }
+
+    .form-section {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .orig-logo {
+        width: 100px;
+    }
+
+    .map-logo {
+        width: 35px;
+    }
+
+    header {
+        padding: 8px 12px;
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .header-logo {
+        width: 45px;
+        margin-left: 0;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+
+    input, textarea, select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    label {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .save-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .footer-links a {
+        font-size: 15px;
+    }
+
+    .fa {
+        font-size: 20px !important;
+        width: 40px;
+        height: 40px;   
+    }
+
+    .image-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image-box {
+        width: 100%;
+    }
+}
+
+/* ========================= */
+/*    Responsive Mobile View   */
+/* ========================= */
+
+/* Responsive layout for mobile devices */
+@media (max-width: 768px) {
+    /* Stack content vertically */
+    .content {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .map-section {
+        width: 90%;
+        min-height: 5px;
+        padding: 0px;
+        margin-bottom: 0px;
+        box-sizing: inherit;
+    }
+
+    .form-section {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .orig-logo {
+        width: 100px;
+    }
+
+    .map-logo {
+        width: 35px;
+    }
+
+    header {
+        padding: 8px 12px;
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .header-logo {
+        width: 45px;
+        margin-left: 0;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+
+    input, textarea, select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    label {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .save-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .footer-links a {
+        font-size: 15px;
+    }
+
+    .fa {
+        font-size: 20px !important;
+        width: 40px;
+        height: 40px;
+    }
+
+    .image-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image-box {
+        width: 100%;
+    }
+
+    /* Adjust map container for mobile view */
+    #map {
+        width: 100%; /* Full width of the viewport */
+        height: 200px; /* Set a suitable height for mobile view */
+        margin: 0; /* Remove any margin */
+    }
+
+    #map img {
+        width: 100%; /* Full width to fit the container */
+        height: 100%; /* Full height for the map */
+        object-fit: cover; /* Maintain aspect ratio and cover the space */
+    }
+
+    /* Adjust map-section heading and other related elements for mobile */
+    .map-section h3 {
+        font-size: 24px; /* Smaller font size for mobile */
+        text-align: center; /* Center-align the text */
+        margin-left: 0; /* Remove the manual left margin */
+    }
+}

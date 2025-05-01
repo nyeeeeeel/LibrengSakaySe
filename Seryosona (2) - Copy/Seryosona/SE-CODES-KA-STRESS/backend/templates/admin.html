@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q City Bus Service / Libreng Sakay - Admin</title>
+    <link rel="stylesheet" href="../static/adminstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .status-button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .status-button[data-status="active"] {
+            background-color: #4CAF50; /* Green for active */
+            color: white;
+        }
+
+        .status-button[data-status="inactive"] {
+            background-color: #f44336; /* Red for inactive */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="../static/Pictures/QCLogo.png.png" alt="Logo" class="logo">
+        <div>
+            <button class="logout-btn" id="logoutBtn">Log Out</button>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        </div>
+    </div>
+
+    <div class="banner">
+        <img src="../static/Pictures/linebr.png" alt="Q City Bus Service Banner" class="banner-image">
+        <h1>Q City Bus Service / <i>Libreng Sakay</i></h1>
+    </div>
+
+    <div>
+
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="action-box">
+                <h3>Manage Bus</h3>
+                <form id="addBusForm" method="post">
+                    <input type="text" name="bus_id" id="bus_id" placeholder="Enter Bus ID" onblur="fetchBusDetails(this.value)" />
+                    <input type="text" name="plate_number" id="plate_number" placeholder="Enter Plate number" />
+                    <input type="text" name="name" id="conductor_name" placeholder="Enter Name" />
+                    <input type="email" name="email" id="email" placeholder="Enter email" />
+                    <input type="password" name="password" id="password" placeholder="Password" />
+                    <button type="submit">Add/Update</button>
+                    <button type="button" onclick="deleteBusInfo()">Delete</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="top-btns">
+                <div class="top-btn"></div>
+                <div class="top-btn"></div>
+                <div class="top-btn"></div>
+                <div class="top-btn"></div>
+                <div class="map-icon"></div>
+            </div>
+
+            <div class="left-panel">
+                <h3>
+                    <div class="logo-container">
+                        <img src="../static/Pictures/mainlogo.png" alt="Bus Logo" />
+                    </div>
+                    Bus Information
+                </h3>
+
+                <div class="info-panel">
+                    <table class="data-grid" id="busTable">
+                        <thead>
+                            <tr>
+                                <th>Bus ID</th>
+                                <th>Plate Number</th>
+                                <th>Conductor Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61575131517859" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://twitter.com/QcBus58146" class="fa fa-twitter" target="_blank"></a>
+            <a href="https://www.instagram.com/qcbuslibrengsakayavailabus/" class="fa fa-instagram" target="_blank"></a>
+        </div>
+    </footer>
+
+    <div id="tosModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">×</span>
+            <h2>📄 Terms of Service</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+            <p>Welcome to the Q City Bus Service / Libreng Sakay Admin System! These Terms of Service govern your use of our platform for managing bus information.</p>
+            <h3>1. Acceptance of Terms</h3>
+            <p>By using this website, you agree to be bound by these Terms. If you do not agree, please refrain from using the service.</p>
+            <h3>2. Description of Service</h3>
+            <p>The system allows administrators to manage bus details such as Bus ID, Name, Plate Number, and Status.</p>
+            <h3>3. Use of the Service</h3>
+            <p>You agree to use the platform only for authorized administrative purposes. You must not misuse the system or attempt unauthorized access.</p>
+            <h3>4. Intellectual Property</h3>
+            <p>All content, including design and logos, is the property of the Q City Bus Service and may not be copied or reproduced without permission.</p>
+            <h3>5. Disclaimer</h3>
+            <p>The information provided within this admin panel is for internal management purposes.</p>
+            <h3>6. Termination</h3>
+            <p>We reserve the right to suspend or terminate access to administrator accounts that violate these terms or misuse the system.</p>
+            <h3>7. Changes to the Terms</h3>
+            <p>We may update these Terms from time to time. Administrators will be notified of any changes.</p>
+            <hr>
+            <h2>🔒 Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> May 05, 2025</p>
+            <h3>1. Information We Collect</h3>
+            <p>This admin system may record actions performed by administrators for audit and security purposes. This may include timestamps of logins, data modifications, and other administrative activities.</p>
+            <p><strong>We do not collect:</strong> Personal information of end-users or track their usage of the public-facing bus service.</p>
+            <h3>2. Use of Information</h3>
+            <p>The data collected within this admin panel is used solely for system administration, security, and auditing purposes.</p>
+            <h3>3. Data Security</h3>
+            <p>We implement standard security measures to protect administrative data from unauthorized access or disclosure. However, no system can be guaranteed 100% secure.</p>
+            <h3>4. Sharing of Data</h3>
+            <p>Administrative data will not be shared with external third parties unless required by law.</p>
+            <h3>5. Cookies</h3>
+            <p>Cookies may be used to manage admin sessions. You can adjust your browser settings to manage cookies.</p>
+            <h3>6. Your Rights</h3>
+            <p>As this is an admin system, data access and modification are controlled by authorized personnel.</p>
+            <h3>7. Updates to This Policy</h3>
+            <p>This Privacy Policy may be updated from time to time. Please review it periodically to stay informed of any changes.</p>
+        </div>
+    </div>
+
+    <script>
+        const openModalLink = document.querySelector('.footer-links a');
+        const modal = document.getElementById('tosModal');
+        const closeModal = document.getElementById('closeModal');
+
+        openModalLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    </script>
+    <script>
+        // Toggle sidebar visibility on mobile
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+        }
+
+        const addBusForm = document.getElementById('addBusForm');
+
+        addBusForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Stop default form behavior
+
+            const formData = new FormData(addBusForm);
+
+            // Convert formData to a plain object
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            Swal.fire({
+                title: "Confirm Add/Update",
+                text: `Do you want to add/update Bus ID: ${data.bus_id}?`,
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, do it!",
+                cancelButtonText: "Cancel",
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#aaa"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/add_bus_info', { // Assuming your add/update endpoint is '/add_bus_info'
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(async response => {
+                        const contentType = response.headers.get("content-type");
+                        if (!contentType || !contentType.includes("application/json")) {
+                            throw new Error("Server did not return JSON. Check Flask route.");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire("Success", data.message, "success");
+                            addBusForm.reset();
+                            fetchBusData();
+                        } else {
+                            Swal.fire("Error", data.message, "error");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire("Error", "An unexpected error occurred. Please try again.", "error");
+                    });
+                }
+            });
+        });
+
+
+        async function fetchBusDetails(busId) {
+            console.log('fetchBusDetails called with:', busId);
+            if (!busId) {
+                document.getElementById('plate_number').value = '';
+                document.getElementById('conductor_name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/get_bus_details/${busId}`);
+                console.log('Fetch response:', response);
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Fetch error:', errorData);
+
+                    swal("Error", "Failed to fetch bus details.", "error");
+                    document.getElementById('plate_number').value = '';
+                    document.getElementById('conductor_name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('password').value = '';
+                    return;
+                }
+
+                const data = await response.json();
+                console.log('Fetch data:', data);
+
+                if (data.success && data.bus_details) {
+                    document.getElementById('plate_number').value = data.bus_details.plate_number || '';
+                    document.getElementById('conductor_name').value = data.bus_details.conductor_name || '';
+                    document.getElementById('email').value = data.bus_details.email || '';
+                    document.getElementById('password').value = data.bus_details.password || '';
+
+                    // Success notification
+                    swal("Success", "Records successfully fetched!", "success");
+                } else {
+                    // If no data found
+                    swal("Info", "No records found for this bus ID.", "info");
+                    document.getElementById('plate_number').value = '';
+                    document.getElementById('conductor_name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('password').value = '';
+                }
+
+            } catch (error) {
+                console.error('Error fetching bus details:', error);
+                swal("Error", "An unexpected error occurred while fetching bus details.", "error");
+
+                document.getElementById('plate_number').value = '';
+                document.getElementById('conductor_name').value = '';
+                documentgetElementById('email').value = '';
+                document.getElementById('password').value = '';
+            }
+
+        }
+
+        async function deleteBusInfo() {
+            const busIdToDelete = document.getElementById('bus_id').value;
+
+            if (!busIdToDelete) {
+                swal("Warning", "Please enter a Bus ID to delete.", "warning");
+                return;
+            }
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: `You are about to delete information for Bus ID: ${busIdToDelete}`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+                cancelButtonText: "Cancel",
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#aaa",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/delete_bus_info/${busIdToDelete}`, {
+                        method: 'DELETE',
+                    })
+                    .then(async response => {
+                        const contentType = response.headers.get("content-type");
+                        if (!contentType || !contentType.includes("application/json")) {
+                            throw new Error("Server did not return JSON. Check Flask route.");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire("Success", data.message, "success");
+                            document.getElementById('addBusForm').reset();
+                            fetchBusData();
+                        } else {
+                            Swal.fire("Error", data.message, "error");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting bus info:', error);
+                        Swal.fire("Error", "An unexpected error occurred while deleting.", "error");
+                    });
+                } else {
+                    Swal.fire("Cancelled", "Bus information was not deleted.", "info");
+                }
+            });
+
+        }
+
+        // Function to fetch and display bus data
+        function fetchBusData() {
+            fetch('/get_all_bus_info')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const tableBody = document.querySelector('#busTable tbody');
+                        tableBody.innerHTML = ''; // Clear existing rows
+                        data.data.forEach(item => {
+                            const row = tableBody.insertRow();
+                            row.insertCell().textContent = item['Bus ID'];
+                            row.insertCell().textContent = item['Plate Number'];
+                            row.insertCell().textContent = item['Conductor Name'];
+                            row.insertCell().textContent = item['Email'];
+                            row.insertCell().textContent = item['Password'];
+
+                            // New Status Cell
+                            const statusCell = row.insertCell();
+                            const statusButton = document.createElement('button');
+                            statusButton.textContent = item['bus_status'] === 'active' ? 'Inactive' : 'Active';
+                            statusButton.classList.add('status-button'); // You can add CSS for styling
+                            statusButton.dataset.busId = item['Bus ID'];
+                            statusButton.dataset.status = item['bus_status'];
+                            statusButton.addEventListener('click', () => toggleBusStatus(item['Bus ID'], item['bus_status'], item['Email'])); // Passing email here
+                            statusCell.appendChild(statusButton);
+                        });
+                    } else {
+                        console.error('Failed to fetch bus info:', data.message);
+                        swal("Error", "Failed to load bus information.", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching bus info:', error);
+                    swal("Error", "An unexpected error occurred while loading bus information.", "error");
+                });
+        }
+
+        async function toggleBusStatus(busId, currentStatus, email) { // Accepting email
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+
+            Swal.fire({
+                title: 'Confirm Status Change',
+                text: `Do you want to set the status for bus with email ${email} to ${newStatus}?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#aaa'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/update_bus_status_by_email', { // Correct endpoint
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ bus_status: newStatus, email: email }), // Sending email
+                    })
+                    .then(async response => {
+                        const contentType = response.headers.get("content-type");
+                        if (!contentType || !contentType.includes("application/json")) {
+                            throw new Error("Server did not return JSON. Check Flask route.");
+                        }
+                        return response.json();})
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire('Success', data.message, 'success');
+                            fetchBusData(); // Refresh the table to show the updated status
+                        } else {
+                            Swal.fire('Error', data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating bus status:', error);
+                        Swal.fire('Error', 'An unexpected error occurred.', 'error');
+                    });
+                }
+            });
+        }
+
+        // Call fetchBusData when the page loads
+        window.onload = fetchBusData;
+    </script>
+    <script>
+
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to go back and logout?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, go back',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/logout', { method: 'POST' })
+                        .then(response => response.json())
+                        .then(data => {
+                            sessionStorage.removeItem('conductorId');
+                            window.location.href = 'login.html';
+                        })
+                        .catch(error => {
+                            console.error('Error during Back:', error);
+                            sessionStorage.removeItem('conductorId');
+                            window.location.href = 'login.html';
+                        });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

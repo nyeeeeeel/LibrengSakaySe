@@ -1,0 +1,656 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('admin.png'); /* Background image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Header styles */
+.header {
+    background-color: #0e4d92;
+    color: white;
+    padding: 8px 25px; /* Increased padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 60px; /* Increased logo size */
+    height: 60px;
+}
+
+.time {
+    font-size: 16px; /* Increased time font size */
+}
+
+/* Banner Styles */
+.banner {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+/* Add image to the banner */
+.banner-image {
+    width: 100%; /* Full width of the banner */
+    height: auto;
+    display: fit -content; /* Fit content to the image */
+    object-fit: cover; /* Cover the entire banner area */
+}
+
+/* Style the heading over the image */
+.banner h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px; /* Larger font size */
+    font-family: 'Poppins', sans-serif; /* Clean, modern font */
+    font-weight: 700; /* Slightly bolder */
+    color: #fff; /* White text */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    padding: 18px 35px; /* Increased padding */
+    border-radius: 12px; /* More rounded */
+    letter-spacing: 1.2px; /* Slightly more spacing */
+}
+
+/* Main container for sidebar, content, and map */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Even wider container */
+    /* height: 950px; /* Slightly increased height */
+    margin: 30px auto; /* More margin and centered */
+    border-radius: 15px; /* Rounded corners for the container */
+    background-color: #f0f8ff; /* Light background for the container */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 28%; /* Wider sidebar */
+    background-color: #1c6dc9;
+    padding: 20px; /* Increased padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Action box styles */
+.action-box {
+    background-color: #e6f7ff;
+    padding: 25px; /* Increased padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    margin-top: 30px; /* Increased margin */
+    text-align: center;
+}
+
+/* Input styles */
+.action-box input {
+    width: 92%; /* Slightly wider input */
+    padding: 12px; /* Increased padding */
+    margin-bottom: 15px; /* Increased margin */
+    border: 1.5px solid #ccc; /* Slightly thicker border */
+    border-radius: 7px; /* More rounded */
+    font-size: 16px; /* Larger font */
+}
+
+/* Button styles */
+.action-box button {
+    width: 40%; /* Wider buttons */
+    padding: 12px; /* Increased padding */
+    margin: 8px; /* Increased margin */
+    background-color: #0e4d92;
+    color: white;
+    border: none;
+    border-radius: 7px; /* More rounded */
+    cursor: pointer;
+    font-size: 18px; /* Larger font */
+}
+
+.action-box button:hover {
+    background-color: #1976d2;
+}
+
+
+.nav-btn {
+    background-color: #80a8f1;
+    height: 50px; /* Taller nav buttons */
+    margin-bottom: 15px; /* Increased margin */
+    border-radius: 7px;
+    font-size: 17px; /* Larger font */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.big-btn {
+    background-color: #769de5;
+    height: 75px; /* Taller big buttons */
+    border-radius: 7px;
+    font-size: 20px; /* Larger font */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Content styles */
+.content {
+    width: 52%; /* Wider content area */
+    background-color: #cfefff;
+    padding: 20px; /* Increased padding */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Circle before "Add Bus Info" */
+.circle {
+    display: inline-block;
+    width: 20px; /* Larger circle */
+    height: 20px;
+    background-color: #1976d2; /* Blue color */
+    border-radius: 50%;
+    margin-right: 12px; /* Increased margin */
+    vertical-align: middle;
+}
+/* Styling Add Bus Info */
+.bus-info-heading {
+    font-size: 40px; /* Larger heading */
+    font-family: 'Arial', sans-serif; /* Change font here */
+    font-weight: bold; /* Optional: Make it bold */
+    color: #1c6dc9; /* Change text color if needed */
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* More space below heading */
+}
+
+/* Optional: Add space between logo and text */
+.logo-container {
+    margin-right: 15px;
+}
+
+/* Logo container size adjustment */
+.logo-container {
+    width: 50px; /* Adjust width */
+    height: 50px; /* Adjust height */
+}
+
+/* Style for the heading */
+/* Logo container styles */
+.logo-container {
+    display: inline-block;
+    width: 60px; /* Larger logo container */
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 30px; /* Increased margin */
+    vertical-align: middle;
+    border: 2.5px solid #1c6dc9; /* Thicker border */
+}
+
+/* Logo image styles */
+.logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.info-panel {
+    background-color: #f8f9fa;
+    padding: 30px; /* Increased padding */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+    margin-top: 20px;
+    flex-grow: 1; /* Allow info-panel to take available vertical space */
+}
+
+.data-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+}
+
+.data-grid thead {
+    background-color: #145380;
+    color: white;
+    font-weight: bold;
+    font-size: 18px; /* Larger header font */
+}
+
+.data-grid th, .data-grid td {
+    padding: 16px; /* Increased padding */
+    text-align: center;
+    border-bottom: 1.5px solid #ddd; /* Slightly thicker border */
+    font-size: 17px; /* Larger font */
+}
+
+.data-grid tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Round first and last cells */
+.data-grid thead tr th:first-child {
+    border-top-left-radius: 12px;
+}
+.data-grid thead tr th:last-child {
+    border-top-right-radius: 12px;
+}
+.data-grid tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+.data-grid tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* Categorized Row Colors */
+.data-grid tbody tr.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.data-grid tbody tr.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.data-grid tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+/* Info panel */
+.info-panel {
+    background-color: #e6f7ff;
+    border-radius: 10px;
+}
+
+/* Map container styles */
+.map-container {
+    width: 16%; /* Slightly smaller map to accommodate wider sidebar and content */
+    background-color: #89c5ea;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Removed fixed width and height */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%; /* Make iframe fill the container */
+    border-radius: 10px; /* Match map iframe border radius */
+}
+
+/*FOOTER SECTION ADMIN*/
+
+footer {
+    text-align: center;
+    padding: 30px; /* Increased padding */
+    background: #001F54;
+    margin-top: 45px; /* Increased margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stack Terms & Privacy Policy Vertically */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px; /* Increased margin */
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px; /* Larger font */
+    margin: 8px 0; /* Increased margin */
+    display: block;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* Social Icons Container */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Increased gap */
+}
+
+/* Style all Font Awesome icons */
+.fa {
+    font-size: 36px !important; /* Larger icons */
+    width: 70px; /* Larger icon area */
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    text-align: center;
+}
+
+
+/* Add hover effect */
+.fa:hover {
+    opacity: 0.7;
+    color: blue;
+}
+
+/* Facebook */
+.fa-facebook {
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    color: white;
+}
+
+/* Instagram */
+.fa-instagram {
+    color: white;
+}
+
+/*Terms And Policies*/
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .modal-overlay.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .modal-content {
+    background: linear-gradient(135deg, #fff8f8, #939292);
+    margin: 60px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.4s ease;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: left; /* Align all text to the left */
+  }
+  /* Existing CSS (keep this) */
+/* ... */
+
+/* Media query for tablets (max-width: 992px) */
+@media screen and (max-width: 992px) {
+    .main-container {
+        flex-direction: column; /* Stack elements */
+        padding: 20px;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        display: block !important; /* Ensure it's visible if it was toggled off */
+    }
+
+    .content {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .map-container {
+        width: 100%;
+        height: 300px; /* Adjust map height */
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    /* Adjust other elements as needed for tablet view */
+    .banner h1 {
+        font-size: 36px;
+        padding: 15px 30px;
+    }
+
+    .left-panel h3 {
+        font-size: 28px;
+    }
+
+    .action-box input {
+        width: 90%;
+        font-size: 15px;
+    }
+
+    .action-box button {
+        font-size: 16px;
+        width: 45%;
+    }
+
+    .data-grid th, .data-grid td {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .footer-links a {
+        font-size: 20px;
+    }
+
+    .fa {
+        font-size: 30px !important;
+        width: 50px;
+        height: 50px;
+        gap: 15px;
+    }
+}
+
+/* Media query for smaller mobile devices (max-width: 576px) */
+@media screen and (max-width: 576px) {
+    .banner h1 {
+        font-size: 28px;
+        padding: 10px 20px;
+    }
+
+    .left-panel h3 {
+        font-size: 24px;
+    }
+
+    .action-box input {
+        font-size: 14px;
+    }
+
+    .action-box button {
+        font-size: 15px;
+        width: 50%;
+    }
+
+    .data-grid th, .data-grid td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .footer-links a {
+        font-size: 18px;
+    }
+
+    .fa {
+        font-size: 24px !important;
+        width: 40px;
+        height: 40px;
+        gap: 10px;
+    }
+}
+
+/* Responsive adjustments for the modal */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 24px;
+    }
+
+    .modal-content h3 {
+        font-size: 20px;
+    }
+
+    .modal-content p {
+        font-size: 16px;
+    }
+
+    .close-button {
+        font-size: 24px;
+    }
+}
+  @keyframes slideIn {
+    from {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    color: #333;
+  }
+  
+  .modal-content h2,
+  .modal-content h3 {
+    margin-top: 20px;
+    color: #222;
+  }
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none; /* Hidden by default */
+    font-size: 40px; /* Larger button text */
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px; /* Increased padding */
+    margin-top: 20px; /* Increased margin */
+    border-radius: 7px;
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack sidebar, content, and map vertically */
+        padding: 20px; /* Adjust padding for smaller screens */
+        margin: 15px auto; /* Adjust margin for smaller screens */
+        border-radius: 10px; /* Adjust border radius */
+    }
+
+    .sidebar {
+        width: 100%; /* Full width for sidebar on mobile */
+        display: block; /* Ensure it's visible when toggled */
+        margin-bottom: 20px; /* Adjust margin */
+        padding: 15px; /* Adjust padding */
+        border-radius: 8px; /* Adjust border radius */
+    }
+
+    .content {
+        width: 100%; /* Full width for content on mobile */
+        margin-bottom: 20px; /* Adjust margin */
+        padding: 15px; /* Adjust padding */
+        border-radius: 8px; /* Adjust border radius */
+    }
+
+    .map-container {
+        width: 100%; /* Full width for map on mobile */
+        height: 400px; /* Adjust map height for smaller screens */
+        order: 2; /* Move map below content by default on mobile */
+        border-radius: 8px; /* Adjust border radius */
+    }
+
+    .banner h1 {
+        font-size: 15px; /* Smaller font size for heading on mobile */
+        padding: 10px; /* Adjust padding */
+        border-radius: 10px; /* Adjust border radius */
+    }
+
+    .mobile-menu-btn {
+        display: block; /* Show mobile menu button on mobile */
+        font-size: 32px; /* Adjust button text size */
+        padding: 12px; /* Adjust button padding */
+        margin-top: 15px; /* Adjust button margin */
+        border-radius: 7px; /* Adjust border radius */
+    }
+
+    .bus-info-heading {
+        font-size: 34px; /* Adjust heading size on mobile */
+        margin-bottom: 15px;
+    }
+
+    .logo-container {
+        width: 45px;
+        height: 45px;
+        margin-right: 20px;
+    }
+
+    .data-grid th, .data-grid td {
+        padding: 12px; /* Adjust table cell padding on mobile */
+        font-size: 15px; /* Adjust table font size on mobile */
+    }
+
+    footer {
+        padding: 20px; /* Adjust footer padding on mobile */
+        margin-top: 25px; /* Adjust footer margin on mobile */
+        border-radius: 8px; /* Adjust border radius */
+    }
+
+    .footer-links a {
+        font-size: 20px; /* Adjust footer link font size on mobile */
+        margin: 5px 0;
+    }
+
+    .fa {
+        font-size: 30px !important; /* Adjust icon size on mobile */
+        width: 55px;
+        height: 55px;
+    }
+}

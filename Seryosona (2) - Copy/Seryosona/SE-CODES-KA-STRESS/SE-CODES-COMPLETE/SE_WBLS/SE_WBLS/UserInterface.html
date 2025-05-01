@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Route Map</title>
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <img src="Pictures/QCLogo.png.png" alt="CityBus Logo" class="header-logo">
+        </div>
+        <button class="logout-btn" id="logoutBtn">Log Out</button>
+    </header>
+
+    <div class="container">
+
+        <div class="content">
+
+            <div class="map-container">
+                <iframe src="map.html" class="map-section-embedded"></iframe>
+            </div>
+
+            <div class="form-section">
+                <div class="dropdown-box">
+                    <label><b>Select Bus Stop: From City Hall to General Luis</b></label>
+                    <select id="bus-stop-from">
+                        <option value="" disabled selected>Choose a bus stop</option>
+                        <option value="qc_hall">From Quezon City Hall NHA Interchange to North Avenue, Veterans Hospital/Vertis North</option>
+                        <option value="north_ave">From North Avenue, Veterans Hospital/Vertis North to Mindanao Avenue corner Road 1</option>
+                        <option value="mindanao_1">From Mindanao Avenue corner Road 1 to Mindanao Avenue, Tullahan Bridge</option>
+                        <option value="mindanao_2">From Mindanao Avenue, Tullahan Bridge to Mindanao Avenue corner Congressional Avenue</option>
+                        <option value="mindanao_3">From Mindanao Avenue corner Congressional Avenue to Mindanao Avenue corner Tandang Sora Avenue</option>
+                        <option value="mindanao_4">From Mindanao Avenue corner Tandang Sora Avenue to Mindanao Avenue corner D. Muñoz Street</option>
+                        <option value="mindanao_5">From Mindanao Avenue corner D. Muñoz Street to Mindanao Avenue corner Old Sauyo Road</option>
+                        <option value="mindanao_6">From Mindanao Avenue corner Old Sauyo Road to Mindanao Avenue corner Quirino Highway</option>
+                        <option value="mindanao_7">From Mindanao Avenue corner Quirino Highway to Quezon City University Main Campus/Novaliches District Hospital</option>
+                        <option value="qcu">From Quezon City University Main Campus/Novaliches District Hospital to Quirino Highway, SM Novaliches</option>
+                        <option value="sm_nova">From Quirino Highway, SM Novaliches to Quirino Highway corner Forest Hills Drive</option>
+                        <option value="forest_hills">From Quirino Highway corner Forest Hills Drive to General Luis, Nova Bayan</option>
+                        <option value="nova_bayan">From General Luis, Nova Bayan to General Luis corner Banahaw Street</option>
+                        <option value="banahaw">From General Luis corner Banahaw Street to General Luis corner SB Road</option>
+                    </select>
+                </div>
+
+                <div class="dropdown-box">
+                    <label><b>Select Bus Stop: From General Luis to City Hall</b></label>
+                    <select id="bus-stop-to">
+                        <option value="" disabled selected>Choose a bus stop</option>
+                        <option value="sb_road">From General Luis corner SB Road to General Luis corner Banahaw Street</option>
+                        <option value="banahaw">From General Luis corner Banahaw Street to General Luis, Nova Bayan</option>
+                        <option value="nova_bayan">From General Luis, Nova Bayan to Quirino Highway corner Forest Hills Drive</option>
+                        <option value="forest_hills">From Quirino Highway corner Forest Hills Drive to Quirino Highway, SM Novaliches</option>
+                        <option value="sm_nova">From Quirino Highway, SM Novaliches to Quezon City University Main Campus/Novaliches District Hospital</option>
+                        <option value="qcu">From Quezon City University Main Campus/Novaliches District Hospital to Mindanao Avenue corner Quirino Highway</option>
+                        <option value="mindanao_7">From Mindanao Avenue corner Quirino Highway to Mindanao Avenue corner Old Sauyo Road</option>
+                        <option value="mindanao_6">From Mindanao Avenue corner Old Sauyo Road to Mindanao Avenue corner D. Muñoz Street</option>
+                        <option value="mindanao_5">From Mindanao Avenue corner D. Muñoz Street to Mindanao Avenue corner Tandang Sora Avenue</option>
+                        <option value="mindanao_4">From Mindanao Avenue corner Tandang Sora Avenue to Mindanao Avenue corner Congressional Avenue</option>
+                        <option value="mindanao_3">From Mindanao Avenue corner Congressional Avenue to Mindanao Avenue, Tullahan Bridge</option>
+                        <option value="mindanao_2">From Mindanao Avenue, Tullahan Bridge to Mindanao Avenue corner Road 1</option>
+                        <option value="mindanao_1">From Mindanao Avenue corner Road 1 to North Avenue, Veterans Hospital/Vertis North</option>
+                        <option value="north_ave">From North Avenue, Veterans Hospital/Vertis North to Quezon City Hall NHA Interchange</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label><b>Estimated Arrival:</b></label>
+                    <input type="text" disabled />
+                </div>
+                <div class="input-box">
+                    <label><b>Available Seats:</b></label>
+                    <input type="text" disabled />
+                </div>
+
+                <div class="notes-box">
+                    <label><b>Notes:</b></label>
+                    <textarea rows="3" disabled></textarea>
+                </div>
+
+                <button type="button" class="cancel-btn" onclick="cancelSelections()">Cancel Selections</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+          <a href="#" id="openModalLink">TERMS OF SERVICE ︱ PRIVACY POLICY</a>
+        </div>
+        <div class="social-icons">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-instagram"></a>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+<div id="tosModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-button" id="closeModal">&times;</span>
+  
+      <h2>📄 Terms of Service</h2>
+      <p><strong>Effective Date:</strong> May 05, 2025</p>
+      <p>Welcome to the Libreng Sakay Web System! These Terms of Service govern your use of our platform, which provides seat availability and estimated arrival time information for the Libreng Sakay route between Quezon City Hall and General Luis Avenue.</p>
+  
+      <h3>1. Acceptance of Terms</h3>
+      <p>By using our website, you agree to be bound by these Terms. If you do not agree, please refrain from using the service.</p>
+  
+      <h3>2. Description of Service</h3>
+      <p>The system allows commuters to view approximate seat availability and target bus arrival times. Bus operators can update seat counts and estimated arrival information. Users are also welcome to submit feedback to help improve the service.</p>
+      <p><em>Note: Arrival times are estimates based on operator inputs and are not guaranteed due to traffic or other unforeseen delays.</em></p>
+  
+      <h3>3. Use of the Service</h3>
+      <p>You agree to use the platform only for lawful purposes. You must not interfere with or disrupt the service or its servers, nor attempt unauthorized access to the system.</p>
+  
+      <h3>4. Limitations and Availability</h3>
+      <p>The system currently supports only the route from Quezon City Hall to General Luis Avenue. It is accessible exclusively via web browsers, as no mobile application is available. Additionally, real-time GPS tracking is not included; all data is manually input by bus operators.</p>
+  
+      <h3>5. Intellectual Property</h3>
+      <p>All content, including design, logos, and text, is the property of the Libreng Sakay Web System and may not be copied or reproduced without permission.</p>
+  
+      <h3>6. Disclaimer</h3>
+      <p>The information provided is intended for general planning purposes only. We do not guarantee accuracy or real-time updates and are not responsible for delays, missed rides, or any travel inconveniences.</p>
+  
+      <h3>7. Termination</h3>
+      <p>We reserve the right to suspend or terminate access to users who violate these terms or misuse the system.</p>
+  
+      <h3>8. Changes to the Terms</h3>
+      <p>We may update these Terms from time to time. Users will be notified of any changes via the website.</p>
+  
+      <hr>
+  
+      <h2>🔒 Privacy Policy</h2>
+      <p><strong>Effective Date:</strong> [Insert Date]</p>
+  
+      <h3>1. Information We Collect</h3>
+      <p>Bus operators may input available seat counts and estimated arrival times. We also collect voluntary user feedback via text-based forms. Additionally, anonymized website analytics data—such as pages visited and time spent on the site—may be gathered to help us improve the platform.</p>
+  
+      <p><strong>We do not collect:</strong> personal information like names, email addresses, or phone numbers. We also do not use GPS or location tracking data.</p>
+  
+      <h3>2. Use of Information</h3>
+      <p>The data we collect is used solely to improve user experience, evaluate system performance, understand commuter satisfaction, and identify issues.</p>
+  
+      <h3>3. Data Security</h3>
+      <p>We implement standard security measures to protect submitted data from unauthorized access or disclosure. However, no system can be guaranteed 100% secure.</p>
+  
+      <h3>4. Sharing of Data</h3>
+      <p>We do not sell, rent, or share your personal data with third parties. Feedback may be reviewed internally to improve service quality.</p>
+  
+      <h3>5. Cookies</h3>
+      <p>Cookies may be used to enhance your experience on the site. You can adjust your browser settings to disable or reject cookies if preferred.</p>
+  
+      <h3>6. Your Rights</h3>
+      <p>Since we do not store personal data, there is no personal information to modify or delete. If you believe any content violates your privacy, please contact us.</p>
+  
+      <h3>7. Updates to This Policy</h3>
+      <p>This Privacy Policy may be updated from time to time. Please review it periodically to stay informed of any changes.</p>
+    </div>
+  </div>
+  
+
+    <script>
+        const openModalLink = document.getElementById('openModalLink');
+        const modal = document.getElementById('tosModal');
+        const closeModal = document.getElementById('closeModal');
+
+        openModalLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    </script>
+
+    <script>
+        // Function to disable the other dropdown when one is selected
+        function enableDisableSelect() {
+            const busStopFrom = document.getElementById('bus-stop-from');
+            const busStopTo = document.getElementById('bus-stop-to');
+
+            // When one dropdown is selected, disable the other
+            busStopFrom.addEventListener('change', function() {
+                if (busStopFrom.value) {
+                    busStopTo.disabled = true;
+                } else {
+                    busStopTo.disabled = false;
+                }
+            });
+
+            busStopTo.addEventListener('change', function() {
+                if (busStopTo.value) {
+                    busStopFrom.disabled = true;
+                } else {
+                    busStopFrom.disabled = false;
+                }
+            });
+        }
+
+        // Run the function once the page loads
+        window.onload = enableDisableSelect;
+
+        // Function to cancel selections for both dropdowns
+        function cancelSelections() {
+            document.getElementById('bus-stop-from').selectedIndex = 0;  // Reset the 'From' dropdown
+            document.getElementById('bus-stop-to').selectedIndex = 0;    // Reset the 'To' dropdown
+
+            // Enable both dropdowns after canceling
+            document.getElementById('bus-stop-from').disabled = false;
+            document.getElementById('bus-stop-to').disabled = false;
+        }
+    </script>
+
+
+<script>
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+        const confirmLogout = confirm("Are you sure you want to log out?");
+        
+        if (confirmLogout) {
+            window.location.href = 'login.html'; 
+        }
+        // If canceled, nothing happens.
+    });
+</script>
+
+</body>
+</html>
